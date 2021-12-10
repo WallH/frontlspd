@@ -1,0 +1,19 @@
+.card{
+    height: 370px;
+    position:relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.container{
+    height: 100%;
+    align-content: center;
+}
+
+.formulario input, textarea, select{
+    background: rgba(77, 73, 73, 0.75) !important;    
+    border: none;
+    color: white;
+}

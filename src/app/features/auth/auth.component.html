@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card ">
+            <div class="card-header text-light">Inicio de sesión</div>
+            <div class="card-body">
+                <form class="formulario" (submit)="login()" [formGroup]="loginForm">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Usuario</span>
+                        <input type="text" formControlName="usuario" type="text" class="form-control text-white">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Contraseña</span>
+                        <input  formControlName="clave" type="password" class="form-control text-white">
+                    </div>    
+                    
+                    <div>
+                        <button class="btn btn-success w-100" type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button> 
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>

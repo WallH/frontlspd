@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-1">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="col-11">
+        <div class="card">
+            <div class="card-header text-light ">Administración de usuarios</div>
+            <div class="card-body">
+                <p class="text-light">En esta sección podrás crear usuarios, asignarle un rango a un usuario e incluso borrar el
+                    usuario.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-light">Creación de usuario</div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Rango</span>
+                    <select type="text" class="form-control text-white" name="selectRango" id="selectRango"
+                        [(ngModel)]="usuario.rango">
+                        <option *ngFor="let rank of rangos" [ngValue]="rank">{{rank.nombre}} | Poder: {{ rank.poder}}</option>
+                    </select>
+                </div>
+                <form class="formulario" (submit)="crearUsuario()" [formGroup]="usuarioForm">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Usuario</span>
+                        <input type="text" formControlName="nombre_usuario" type="text" class="form-control text-white">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Contraseña</span>
+                        <input formControlName="clave" type="password" class="form-control text-white">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Nombre</span>
+                        <input type="text" formControlName="nombre" type="text" class="form-control text-white">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Apellido</span>
+                        <input formControlName="apellido" type="text" class="form-control text-white">
+                    </div>
+                    <button class="btn btn-success w-100" type="submit" [disabled]="usuarioForm.invalid">Crear usuario</button>
+                </form>
+        
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col-6">
+                <div class="card-header text-light"><h2>Listado de usuarios</h2></div>
+                <div class="mb-2 text-light">
+                    Filtros: <button class="btn btn-sm btn-success" (click)="nuevoFiltro()">+</button>
+                    <div class="float-end">
+                        <button class="btn btn-sm btn-secondary" (click)="buscar()">Buscar</button>
+                        <button class="btn btn-sm btn-primary" (click)="limpiarFiltro()">Limpiar filtro</button>
+                    </div>
+                </div>
+                <div *ngFor="let filtro of filtros" class="row input-group m-auto mb-1">
+                    <select class="form-select-sm col-3 text-white filtros s" [(ngModel)]="filtro.property">
+                        <option *ngFor="let prop of propiedades">{{prop}}</option>
+                    </select>
+                    <input class="form-control col-8" [(ngModel)]="filtro.value">
+                    <button class="btn btn-danger col-1" (click)="borrarFiltro(filtro)">-</button>
+                </div>
+                <table class="table tabla text-light">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Rango</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let oficial of usuariosFiltrados">
+                            <td>{{ oficial.nombre_usuario }} </td>
+                            <td>{{ oficial.nombre }}</td>
+                            <td>{{ oficial.apellido }}</td>
+                            <td >{{ oficial.rango?.nombre || "Sin definir"}}</td>
+                            <td><button class="btn btn-warning" (click)="editarUsuario(oficial)">Editar</button></td>
+                        </tr>    
+                    </tbody>
+                </table>
+            </div>
+            <div class="card col-6" *ngIf="usuarioEdicion != null">
+                <div class="card-header text-light"><h2>Edición del usuario</h2></div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Rango</span>
+                        <select type="text" class="form-control text-white" name="editRango" id="editRango"
+                            [(ngModel)]="usuarioEdicion.rango">
+                            <option *ngFor="let rank of rangos" [ngValue]="rank">{{rank.nombre}} | Poder: {{ rank.poder}}</option>
+                        </select>
+                    </div>
+                    <form class="formulario" (submit)="confirmarEdicion()" [formGroup]="usuarioFormEdit">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Usuario</span>
+                            <input type="text" formControlName="nombre_usuario" type="text" class="form-control text-white">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Contraseña</span>
+                            <input formControlName="clave" type="password" class="form-control text-white">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" formControlName="nombre" type="text" class="form-control text-white">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Apellido</span>
+                            <input formControlName="apellido" type="text" class="form-control text-white">
+                        </div>
+                        <button class="btn btn-success w-100" type="submit" [disabled]="usuarioFormEdit.invalid">Confirmar edición.</button>
+                    </form>            
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

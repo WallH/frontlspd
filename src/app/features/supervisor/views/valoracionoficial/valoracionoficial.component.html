@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-1">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="col-11">
+        <div class="card">
+            <div class="card-header text-light"><h2>Agregar nueva ficha</h2></div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Oficial</span>
+                <select type="text" class="form-control text-white" name="selectOficial" id="selectOficial"
+                    [(ngModel)]="valoracion.oficial">
+                    <option *ngFor="let oficial of usuarios" [ngValue]="oficial">{{oficial.nombre}}_{{oficial.apellido}} | Rango: {{oficial.rango?.nombre}} | Poder: {{ oficial.rango?.poder}}</option>
+                </select>
+            </div>
+            <hr class="bg-light">
+            <div class="input-group mb-3 text-light" *ngFor="let detallePuntuacion of puntuacionNueva">
+                <input class="form-check-input" type="checkbox" id="CheckPuntuacion" name="CheckPuntuacion" [(ngModel)]="detallePuntuacion.checked" >  {{detallePuntuacion.label}} {{detallePuntuacion.descripcion}} | Puntaje: {{detallePuntuacion.puntaje * detallePuntuacion.checked}}
+            </div>
+            <hr class="bg-light">
+            <p class="text-light">Puntuación total: </p>
+            <div class="input-group mb-3">
+                <span class="input-group-text w-25">Observación (opcional)</span>
+                <textarea class="w-75" id="inputObservacion" name="inputObservacion" [(ngModel)]="valoracion.observacion">
+                </textarea>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Fecha</span>
+                <input [(ngModel)]="valoracion.fecha" type="date" class="formulario"> 
+            </div>
+            <button class="btn btn-success" (click)="crearFicha()">Enviar ficha</button>
+        </div>
+        <div class="card">
+            <div class="card-header text-light">
+                <h2>Listado de valoraciones hechas por mi</h2>
+            </div>
+            <div class="mb-2 text-light">
+                Filtros: <button class="btn btn-sm btn-success" (click)="nuevoFiltro()">+</button>
+                <div class="float-end">
+                    <button class="btn btn-sm btn-secondary" (click)="buscar()">Buscar</button>
+                    <button class="btn btn-sm btn-primary" (click)="limpiarFiltro()">Limpiar filtro</button>
+                </div>
+            </div>
+            <div *ngFor="let filtro of filtros" class="row input-group m-auto mb-1">
+                <select class="form-select-sm col-3 text-white filtros s" [(ngModel)]="filtro.property">
+                    <option *ngFor="let prop of propiedades">{{prop}}</option>
+                </select>
+                <input class="form-control col-8" [(ngModel)]="filtro.value">
+                <button class="btn btn-danger col-1" (click)="borrarFiltro(filtro)">-</button>
+            </div>
+            <table class="table tabla text-light">
+                <thead>
+                    <tr>
+                        <th>Oficial evaluado</th>
+                        <th>Rango oficial</th>
+                        <th>Puntuación</th>
+                        <th>Fecha</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let valoracion of valoracionesFiltradas" [class]="((valoracion.puntuacion)> 6) ? 'bg-success' : 'bg-danger'">
+                        <td>{{ valoracion.oficial.nombre }}_{{valoracion.oficial.apellido}}</td>
+                        <td>{{ valoracion.oficial.rango?.nombre || "Sin definir"}}</td>
+                        <td>{{ valoracion.puntuacion}}</td>
+                        <td>{{ valoracion?.fecha || "Sin definir"}}</td>
+                        <td><button class="btn btn-warning" (click)="verDetalle(valoracion)">Detalle</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <span class="border rounded border-warning" *ngIf="valoracionDetalle != null">
+                <p class="text-light">Oficial evaluado: {{ valoracionDetalle.oficial?.nombre }}_{{valoracionDetalle.oficial?.apellido}} </p>
+                <p class="text-light">Oficial encargado: {{ valoracionDetalle.encargado?.nombre }}_{{valoracionDetalle.encargado?.apellido}} </p>
+                <p class="text-light">Puntuación: {{ valoracionDetalle.puntuacion }} </p>
+                <p class="text-light">Puntuación detallada:</p>
+                <hr class="bg-light">
+                <div class="input-group mb-3 text-light" *ngFor="let detalleP of vistaDetalle">
+                    <input class="form-check-input" type="checkbox" id="CheckPuntuacion" name="CheckPuntuacion" disabled [(ngModel)]="detalleP.checked" >  {{detalleP.label}} {{detalleP.descripcion}} | Puntaje: {{detalleP.puntaje * detalleP.checked}}
+                </div>
+                <hr class="bg-light">
+                <p class="text-light">Observacion: {{valoracionDetalle.observacion}}</p>
+                <p class="text-light">Fecha: {{valoracionDetalle.fecha}}</p>
+                
+            </span>
+        </div>   
+    </div>
+
+</div>

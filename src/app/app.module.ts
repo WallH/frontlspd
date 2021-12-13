@@ -9,7 +9,6 @@ import { HavePermission, NeedLoggedIn, NeedLogout } from './guards/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
   ],
   imports: [
     BrowserModule,

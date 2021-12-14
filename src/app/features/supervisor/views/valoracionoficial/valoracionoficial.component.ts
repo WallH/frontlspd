@@ -68,7 +68,8 @@ export class ValoracionoficialComponent implements OnInit {
 
     },
     {
-      label:"Horas de servicio",
+      label:"Interacción con el superior",
+      descripcion: "(Valorar la actitud que tiene el Oficial con el superior y trabajo en el departamento actual que está realizando)",
       puntaje:1,
       checked: false
     }

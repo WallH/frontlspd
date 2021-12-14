@@ -8,10 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValoracionoficialComponent } from './views/valoracionoficial/valoracionoficial.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CorecomponentsModule } from 'src/app/components/corecomponents/corecomponents.module';
+import { RangosComponent } from './views/rangos/rangos.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent],
+  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

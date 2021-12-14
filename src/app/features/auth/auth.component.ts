@@ -34,6 +34,7 @@ export class AuthComponent implements OnInit {
       //localStorage.setItem('rol', res.data.rol)
       localStorage.setItem('nombre', res.data.nombre);
       localStorage.setItem('apellido', res.data.apellido);
+      this.route.navigateByUrl('supervisor/valoracionoficial');
     }).catch((res)=>
     {
       alert("Credenciales incorrectas");

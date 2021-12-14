@@ -35,7 +35,7 @@ export class NeedLogout implements CanActivate
         console.log("ASDADA");
         if(isLogged)
         {
-            this.router.navigateByUrl('');
+            this.router.navigateByUrl('supervisor/valoracionoficial');
             return false;
         }
         return true;

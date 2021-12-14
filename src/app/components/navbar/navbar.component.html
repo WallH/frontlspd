@@ -4,11 +4,25 @@
     <li class="nav-item">
       <a [routerLink]="['/admin/usuarios']" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Usuarios">
         <i class="bi bi-people"></i>
+        Admin usuarios
       </a>
     </li>
     <li>
       <a [routerLink]="['/admin/valoracionoficial']" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Valoración Oficiales">
-        <i class="bi bi-people"></i>
+        <i class="bi bi-book-half"></i>
+        Admin fichas
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/supervisor/valoracionoficial']" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Valoración Oficiales">
+        <i class="bi bi-book"></i>
+        Crear/Ver fichas
+      </a>
+    </li>
+    <li>
+      <a (click)="logout()" class="nav-link text-light py-3 border-bottom" title="Desconectarse">
+        <i class="bi bi-power"></i>
+        Cerrar sesión
       </a>
     </li>
   </ul>

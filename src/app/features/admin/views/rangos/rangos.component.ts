@@ -89,9 +89,18 @@ export class RangosComponent implements OnInit {
   editarRango(rango)
   {
     this.rangoEdicion = rango;
+    this.assignDataToFormGroup(this.rangoFormEdit, this.rangoEdicion);
     this.permisosEdicion = null;
   }
-
+  confirmarEdicion()
+  {
+    this.assignEditFormDataToElement(this.rangoFormEdit);
+    this.rangoService.edit(this.rangoEdicion._id, this.rangoEdicion).then(response=>
+    {
+        this.cargarRangos();
+        alert("Rango editado con éxito.");
+    });
+  }
   crearRango()
   {
     this.assignFormDataToElement(this.rangoForm); 
@@ -115,13 +124,39 @@ export class RangosComponent implements OnInit {
   {
   }
   
-
+  assignEditFormDataToElement(formGroup:FormGroup){
+    let obj = Object.getOwnPropertyNames(formGroup.controls);
+    for(let x of obj)
+    {
+      this.rangoEdicion[x] = formGroup.get(x)?.value;
+    }
+  }
   assignFormDataToElement(formGroup:FormGroup){
     let obj = Object.getOwnPropertyNames(formGroup.controls);
     for(let x of obj)
     {
       this.rango[x] = formGroup.get(x)?.value;
     }
+  }
+
+  assignDataToFormGroup(formGroup:FormGroup, elem:any)
+  {
+    if(elem != null)
+    {
+      let obj = Object.getOwnPropertyNames(formGroup.controls);
+      for(let x of obj)
+      {
+        
+        if(typeof(elem[x]) == "string" && elem[x].endsWith(".000Z"))
+        {
+          formGroup.controls[x].setValue(elem[x].substring(0,10));
+          continue;
+        }
+        formGroup.controls[x].setValue(elem[x]);
+      }  
+      return;
+    }
+    formGroup.reset();
   }
 
   agregarPermiso()

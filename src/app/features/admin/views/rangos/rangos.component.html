@@ -88,9 +88,9 @@
                         <select type="text" class="form-control text-white" name="selectAccion" id="selectAccion" [(ngModel)]="accionNueva">
                             <option *ngFor="let action of acciones" [ngValue]="action">{{action.nombre}}</option>
                         </select>
-                        <p class="text-light">Si agregas este permiso, el usuario tendrá permiso de: {{ accionNueva?.descripcion || "No elegida" }}</p>
                     </div>
-
+                    <p class="text-light">Si agregas este permiso, el usuario tendrá permiso de: {{ accionNueva?.descripcion || "No elegida" }}</p>
+                    <button class="btn btn-info" (click)="agregarPermiso()">Agregar permiso</button>
                     <table class="table tabla text-light">
                         <thead>
                             <tr>
@@ -107,7 +107,7 @@
                             </tr>    
                         </tbody>
                     </table>    
-                    <button class="btn btn-info">Confirmar cambios</button>
+                    <button class="btn btn-info" (click)="confirmarPermisos()">Confirmar cambios</button>
                 </div>
             </div>
 

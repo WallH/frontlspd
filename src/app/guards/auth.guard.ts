@@ -14,7 +14,7 @@ export class NeedLoggedIn implements CanActivate
         this.authDataService.validLogin.next(isLogged);
         if(!isLogged)
         {
-            this.router.navigateByUrl('auth');
+            this.router.navigateByUrl('');
             return false;
         }
         return true;

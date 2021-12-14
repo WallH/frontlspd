@@ -8,7 +8,7 @@ import { UsuarioComponent } from './views/usuario/usuario.component';
 import { ValoracionoficialComponent } from './views/valoracionoficial/valoracionoficial.component';
 
 const routes: Routes = [{ path: '', component: AdminComponent },
-  {path:'usuarios', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["agregar.usuario", "eliminar.usuario"]},component:UsuarioComponent},
+  {path:'usuarios', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["usuario.nuevo", "usuario.eliminar"]},component:UsuarioComponent},
   {path:'rangos', canActivate:[NeedLoggedIn], component:RangosComponent},
   {path:'valoracionoficial', component:ValoracionoficialComponent}];
 

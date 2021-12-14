@@ -51,8 +51,20 @@ export class HavePermission implements CanActivate
     {
     }
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-        let rol = (await this.authDataService.checkLogin()).data.rol;
-        if(!route.data.rolNested.includes(rol))
+        let permisos = (await this.authDataService.checkLogin()).data.permisos;
+
+        for(let permiso of permisos)
+        {
+            this.mapPermissions[permiso.nombre] = true;
+        }
+        
+        let valid = route.data.permisosNested.length;
+        for(let permisoNeed of route.data?.permisosNested)
+        {
+            if(this.mapPermissions[permisoNeed]) valid--; 
+        }
+
+        if(valid)
         {
             this.router.navigateByUrl('');
             return false;

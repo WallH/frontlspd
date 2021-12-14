@@ -9,5 +9,109 @@
                 <p class="text-light">En esta sección podrás administrar los rangos existentes. Y los permisos asignados a este.</p>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header text-light">Creación de rango</div>
+            <form class="formulario" (submit)="crearRango()" [formGroup]="rangoForm">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Nombre</span>
+                    <input type="text" formControlName="nombre" type="text" class="form-control text-white">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Poder</span>
+                    <input formControlName="poder" type="number" class="form-control text-white">
+                </div>
+                <button class="btn btn-success w-100" type="submit" [disabled]="rangoForm.invalid">Crear rango</button>
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="card col-6 col-sm-12 col-lg-6">
+                <div class="card-header text-light"><h2>Listado de rangos</h2></div>
+                <div class="mb-2 text-light">
+                    Filtros: <button class="btn btn-sm btn-success" (click)="nuevoFiltro()">+</button>
+                    <div class="float-end">
+                        <button class="btn btn-sm btn-secondary" (click)="buscar()">Buscar</button>
+                        <button class="btn btn-sm btn-primary" (click)="limpiarFiltro()">Limpiar filtro</button>
+                    </div>
+                </div>
+                <div *ngFor="let filtro of filtros" class="row input-group m-auto mb-1">
+                    <select class="form-select-sm col-3 text-white filtros s" [(ngModel)]="filtro.property">
+                        <option *ngFor="let prop of propiedades">{{prop}}</option>
+                    </select>
+                    <input class="form-control col-8" [(ngModel)]="filtro.value">
+                    <button class="btn btn-danger col-1" (click)="borrarFiltro(filtro)">-</button>
+                </div>
+
+                <table class="table tabla text-light">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Poder</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rank of rangosFiltrados">
+                            <td>{{ rank.nombre }} </td>
+                            <td>{{ rank.poder }}</td>
+                            <td><button class="btn btn-warning" (click)="editarRango(rank)">Editar</button>
+                                <button class="btn btn-info" (click)="verPermisos(rank)"><i class="bi bi-shield-lock"></i>Permisos</button></td>
+                        </tr>    
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="card col-6 col-sm-12 col-lg-6" *ngIf="rangoEdicion != null">
+                <div class="card-header text-light"><h2>Edición del rango</h2></div>
+                <div class="card-body">
+                    <form class="formulario" (submit)="confirmarEdicion()" [formGroup]="rangoFormEdit">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" formControlName="nombre" type="text" class="form-control text-white">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Poder</span>
+                            <input formControlName="poder" type="number" class="form-control text-white">
+                        </div>
+                        <button class="btn btn-success w-100" type="submit" [disabled]="rangoFormEdit.invalid">Confirmar edición.</button>
+                    </form>            
+                </div>
+            </div>
+
+            <div class="card col-6 col-sm-12 col-lg-6" *ngIf="permisosEdicion != null">
+                <div class="card-header text-light"><h2>Permisos del rango: {{rangoEdicion?.nombre}}</h2></div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Permiso</span>
+                        <select type="text" class="form-control text-white" name="selectAccion" id="selectAccion" [(ngModel)]="accionNueva">
+                            <option *ngFor="let action of acciones" [ngValue]="action">{{action.nombre}}</option>
+                        </select>
+                        <p class="text-light">Si agregas este permiso, el usuario tendrá permiso de: {{ accionNueva?.descripcion || "No elegida" }}</p>
+                    </div>
+
+                    <table class="table tabla text-light">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let permiso of permisosEdicion.acciones">
+                                <td>{{ permiso.nombre }} </td>
+                                <td>{{ permiso.descripcion }}</td>
+                                <td><button class="btn btn-danger" (click)="quitarPermiso(permiso)">-</button>
+                            </tr>    
+                        </tbody>
+                    </table>    
+                    <button class="btn btn-info">Confirmar cambios</button>
+                </div>
+            </div>
+
+        </div>
+    
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { ValoracionOficial } from 'src/app/models/valoracionoficial';
+import { MyService } from 'src/app/services/my.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ValoracionOficialService } from 'src/app/services/valoracionoficial.service';
 import DynamicFilters from 'src/app/utils/dynamicfilters';
@@ -119,7 +120,7 @@ export class ValoracionoficialComponent implements OnInit {
   //#endregion
 
 
-  constructor(private valoracionesService:ValoracionOficialService, private usuarioService:UsuarioService) {
+  constructor(private valoracionesService:ValoracionOficialService, private usuarioService:UsuarioService, private myService:MyService) {
     this.cargarValoraciones();
     this.cargarUsuarios();
    }
@@ -139,10 +140,14 @@ export class ValoracionoficialComponent implements OnInit {
 
   cargarValoraciones()
   {
-    this.valoracionesService.getAll().then(response=>{
+    this.myService.getMyFicha().then(response=>{
+      this.valoraciones = response.data.response;
+      this.valoracionesFiltradas = this.valoraciones;      
+    });
+/*    this.valoracionesService.getAll().then(response=>{
       this.valoraciones = response.data.response;
       this.valoracionesFiltradas = this.valoraciones;
-    });
+    });*/
   }
   
   crearFicha()
@@ -153,7 +158,10 @@ export class ValoracionoficialComponent implements OnInit {
       if(x.checked) this.valoracion.puntuacion= new Number(parseInt(x.puntaje.toString())+parseInt(this.valoracion.puntuacion.toString()));;
     })
     console.log(this.valoracion.puntuacion);
-    this.valoracionesService.add(this.valoracion);
+    this.valoracionesService.add(this.valoracion).then(response=>{
+      alert("Ficha creada correctamente.");
+      this.cargarValoraciones();
+    });
   }
 
   vistaDetalle:any;

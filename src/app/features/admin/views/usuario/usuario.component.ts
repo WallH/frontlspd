@@ -103,7 +103,9 @@ export class UsuarioComponent implements OnInit {
     console.log(this.usuario.rango);
     this.usuarioService.add(this.usuario).then(res=>
       {
-        console.log(res);
+        alert("Usuario creado");
+        this.cargarUsuarios();
+
       });
   }
 

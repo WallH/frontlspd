@@ -8,9 +8,9 @@ import { UsuarioComponent } from './views/usuario/usuario.component';
 import { ValoracionoficialComponent } from './views/valoracionoficial/valoracionoficial.component';
 
 const routes: Routes = [{ path: '', component: AdminComponent },
-  {path:'usuarios', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["usuario.nuevo", "usuario.eliminar"]},component:UsuarioComponent},
-  {path:'rangos', canActivate:[NeedLoggedIn], component:RangosComponent},
-  {path:'valoracionoficial', component:ValoracionoficialComponent}];
+  {path:'usuarios', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["usuario.nuevo", "usuario.eliminar", "usuario.obtener", "usuario.editar"]},component:UsuarioComponent},
+  {path:'rangos', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:RangosComponent},
+  {path:'valoracionoficial', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["ficha.nuevo", "ficha.eliminar", "ficha.obtener", "ficha.editar"]}, component:ValoracionoficialComponent}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

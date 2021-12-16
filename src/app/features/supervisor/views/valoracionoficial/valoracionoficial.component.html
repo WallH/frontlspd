@@ -19,13 +19,13 @@
             <hr class="bg-light">
             <p class="text-light">Puntuación total: </p>
             <div class="input-group mb-3">
-                <span class="input-group-text w-25">Observación (opcional)</span>
+                <span class="input-group-text w-25">Observación (NO ES OBLIGATORIO RELLENAR)</span>
                 <textarea class="w-75" id="inputObservacion" name="inputObservacion" [(ngModel)]="valoracion.observacion">
                 </textarea>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Fecha</span>
-                <input [(ngModel)]="valoracion.fecha" type="date" class="formulario"> 
+                <input [(ngModel)]="valoracion.fecha" type="date" class="form-control formulario" onkeydown="return false"> 
             </div>
             <button class="btn btn-success" (click)="crearFicha()">Enviar ficha</button>
         </div>

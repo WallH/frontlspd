@@ -9,10 +9,11 @@ import { ValoracionoficialComponent } from './views/valoracionoficial/valoracion
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CorecomponentsModule } from 'src/app/components/corecomponents/corecomponents.module';
 import { RangosComponent } from './views/rangos/rangos.component';
+import { PermisosendpointComponent } from './views/permisosendpoint/permisosendpoint.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent],
+  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent, PermisosendpointComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

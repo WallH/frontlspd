@@ -143,6 +143,17 @@ export class UsuarioComponent implements OnInit {
       this.usuarioEdicion[x] = formGroup.get(x)?.value;
     }
   }
+  cambiarEstadoUsuario(oficial)
+  {
+    if(confirm("¿Confirmar cambio de estado del usuario?"))
+    {
+      if(oficial["activo"] == undefined) oficial["activo"] = true;
+      else oficial.activo = !oficial?.activo; 
+      this.usuarioService.edit(oficial._id, oficial).then(response=>{
+        console.log(response);
+      });
+    }
+  }
   cargarRangos()
   {
     this.rangos = new Array<Rango>();

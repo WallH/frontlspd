@@ -66,6 +66,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Rango</th>
+                            <th>Activo</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -75,7 +76,9 @@
                             <td>{{ oficial.nombre }}</td>
                             <td>{{ oficial.apellido }}</td>
                             <td >{{ oficial.rango?.nombre || "Sin definir"}}</td>
-                            <td><button class="btn btn-warning" (click)="editarUsuario(oficial)">Editar</button></td>
+                            <td>{{((oficial?.activo) ? "Si" : "No")}}</td>
+                            <td><button class="btn btn-warning" (click)="editarUsuario(oficial)">Editar</button>
+                            <button class="btn" [class]="oficial?.activo ? 'btn-danger' : 'btn-success'" (click)="cambiarEstadoUsuario(oficial)">{{((oficial?.activo) ? "Deshabilitar" : "Habilitar")}}</button></td>
                         </tr>    
                     </tbody>
                 </table>

@@ -3,13 +3,30 @@ import { Usuario } from 'src/app/models/usuario';
 import { ValoracionOficial } from 'src/app/models/valoracionoficial';
 import { ValoracionOficialService } from 'src/app/services/valoracionoficial.service';
 import DynamicFilters from 'src/app/utils/dynamicfilters';
-
 @Component({
   selector: 'app-valoracionoficial',
   templateUrl: './valoracionoficial.component.html',
   styleUrls: ['./valoracionoficial.component.css']
 })
 export class ValoracionoficialComponent implements OnInit {
+
+  generalEstadisticas:boolean = false;
+  title = 'googlechart';  
+  type = 'ColumnChart';  
+  data = [  
+     ['Name1', 5.0],  
+     ['Name2', 36.8],  
+     ['Name3', 42.8],  
+     ['Name4', 18.5],  
+     ['Name5', 16.2]  
+  ];  
+  columnNames = ['Name', 'Percentage'];  
+  options = {      
+  };  
+  width = 500;  
+  height = 300;  
+
+
   usuarios:Array<Usuario> = new Array<Usuario>();
   usuario:Usuario = new Usuario();
 

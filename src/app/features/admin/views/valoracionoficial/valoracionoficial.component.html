@@ -3,6 +3,18 @@
         <app-navbar></app-navbar>
     </div>
     <div class="card col-11 col-md-10 col-sm-10">
+        <div class="card-header text-light" (click)="generalEstadisticas=!generalEstadisticas" *ngIf="false">Estadísticas de los datos listados. (click aquí para mostrar u ocultar)</div>
+
+        <div *ngIf="generalEstadisticas && false">
+            <google-chart #chart  
+            [title]="title"  
+            [type]="type"  
+            [data]="data"  
+            [options]="options"  
+            [width]="width"  
+            [height]="height">  
+            </google-chart> 
+        </div>
         <div class="card-header text-light">
             <h2>Fichas</h2>
         </div>
@@ -25,9 +37,11 @@
                 <tr>
                     <th>Oficial evaluado</th>
                     <th>Rango oficial</th>
+                    <th>Comisaría oficial</th>
                     <th>Supervisor</th>
                     <th>Rango supervisor</th>
-                    <th>Puntuación</th>
+                    <th>Comisaría supervisor</th>
+                    <th title="Puntuación">P.</th>
                     <th>Fecha</th>
                     <th></th>
                 </tr>
@@ -36,8 +50,10 @@
                 <tr *ngFor="let valoracion of valoracionesFiltradas" [class]="((valoracion.puntuacion)> 6) ? 'bg-success' : 'bg-danger'">
                     <td>{{ valoracion.oficial.nombre }}_{{valoracion.oficial.apellido}}</td>
                     <td>{{ valoracion.oficial.rango?.nombre  || "Sin definir"}}</td>
+                    <td>{{ valoracion.oficial.comisaria?.indicativo || "Sin definir"}}</td>
                     <td>{{ valoracion.encargado.nombre }}_{{valoracion.encargado.apellido}}</td>
                     <td>{{ valoracion.encargado.rango?.nombre || "Sin definir"}}</td>
+                    <td>{{ valoracion.encargado.comisaria?.indicativo || "Sin definir"}}</td>
                     <td>{{ valoracion.puntuacion}}</td>
                     <td>{{ valoracion?.fecha || "Sin definir"}}</td>
                     <td><button class="btn btn-warning" (click)="verDetalle(valoracion)">Detalle</button>

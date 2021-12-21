@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HavePermission, NeedLoggedIn, NeedLogout } from './guards/auth.guard';
-
 @NgModule({
   declarations: [
     AppComponent,

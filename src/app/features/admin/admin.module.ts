@@ -10,16 +10,18 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CorecomponentsModule } from 'src/app/components/corecomponents/corecomponents.module';
 import { RangosComponent } from './views/rangos/rangos.component';
 import { PermisosendpointComponent } from './views/permisosendpoint/permisosendpoint.component';
-
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ComisariaComponent } from './views/comisaria/comisaria.component'; 
 
 @NgModule({
-  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent, PermisosendpointComponent],
+  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent, PermisosendpointComponent, ComisariaComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    CorecomponentsModule
+    CorecomponentsModule,
+    GoogleChartsModule  
   ]
 })
 export class AdminModule { }

@@ -14,6 +14,13 @@
             <div class="card-header text-light">Creación de usuario</div>
             <div class="card-body">
                 <div class="input-group mb-3">
+                    <span class="input-group-text">Comisaría</span>
+                    <select type="text" class="form-control text-white" name="selectComisaria" id="selectComisaria"
+                        [(ngModel)]="usuario.comisaria">
+                        <option *ngFor="let comisaria of comisarias" [ngValue]="comisaria">{{comisaria.nombre}} | Indicativo: {{ comisaria.indicativo}}</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
                     <span class="input-group-text">Rango</span>
                     <select type="text" class="form-control text-white" name="selectRango" id="selectRango"
                         [(ngModel)]="usuario.rango">
@@ -66,6 +73,7 @@
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Rango</th>
+                            <th>Comisaría</th>
                             <th>Activo</th>
                             <th></th>
                         </tr>
@@ -76,6 +84,7 @@
                             <td>{{ oficial.nombre }}</td>
                             <td>{{ oficial.apellido }}</td>
                             <td >{{ oficial.rango?.nombre || "Sin definir"}}</td>
+                            <td> {{ oficial.comisaria?.nombre || "Sin definir" }}</td>
                             <td>{{((oficial?.activo) ? "Si" : "No")}}</td>
                             <td><button class="btn btn-warning" (click)="editarUsuario(oficial)">Editar</button>
                             <button class="btn" [class]="oficial?.activo ? 'btn-danger' : 'btn-success'" (click)="cambiarEstadoUsuario(oficial)">{{((oficial?.activo) ? "Deshabilitar" : "Habilitar")}}</button></td>
@@ -86,6 +95,13 @@
             <div class="card col-6 col-sm-12 col-lg-6" *ngIf="usuarioEdicion != null">
                 <div class="card-header text-light"><h2>Edición del usuario</h2></div>
                 <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Comisaría</span>
+                        <select type="text" class="form-control text-white" name="editComisaria" id="editComisaria"
+                            [(ngModel)]="usuarioEdicion.comisaria">
+                            <option *ngFor="let comisaria of comisarias" [ngValue]="comisaria">{{comisaria.nombre}} | Indicativo: {{ comisaria.indicativo}}</option>
+                        </select>
+                    </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Rango</span>
                         <select type="text" class="form-control text-white" name="editRango" id="editRango"

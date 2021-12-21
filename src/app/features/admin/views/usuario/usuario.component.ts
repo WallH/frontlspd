@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Comisaria } from 'src/app/models/comisaria';
 import { Rango } from 'src/app/models/rango';
 import { Usuario } from 'src/app/models/usuario';
+import { ComisariaService } from 'src/app/services/comisaria.service';
 import { RangoService } from 'src/app/services/rango.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import DynamicFilters from 'src/app/utils/dynamicfilters';
@@ -32,7 +34,7 @@ export class UsuarioComponent implements OnInit {
   });
 
   rangos:Array<Rango> = new Array<Rango>();
-
+  comisarias:Array<Comisaria> = new Array<Comisaria>();
 
   //#region Filtros
   filtros = new Array<any>();
@@ -65,9 +67,10 @@ export class UsuarioComponent implements OnInit {
 
   //#endregion
 
-  constructor(private usuarioService: UsuarioService, private rangoService: RangoService, private formBuilder:FormBuilder) {
+  constructor(private usuarioService: UsuarioService, private rangoService: RangoService, private comisariaService:ComisariaService, private formBuilder:FormBuilder) {
     this.cargarUsuarios();
     this.cargarRangos();
+    this.cargarComisarias();
    }
 
   cargarUsuarios()
@@ -85,8 +88,8 @@ export class UsuarioComponent implements OnInit {
     this.usuarioEdicion = usuario;
     console.log(this.usuarioEdicion);
     this.assignDataToFormGroup(this.usuarioFormEdit, this.usuarioEdicion);
-    console.log(this.rangos.filter(x=> x._id == x._id)[0]);
     this.usuarioEdicion.rango = this.rangos.filter(x=> x._id == usuario.rango?._id)[0];
+    this.usuarioEdicion.comisaria = this.comisarias.filter(x=> x._id == usuario.comisaria?._id)[0];
   }
   confirmarEdicion()
   {
@@ -163,6 +166,12 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
+  cargarComisarias()
+  {
+    this.comisariaService.getAll().then(response=>{
+      this.comisarias = response.data.response;
+    });
+  }
   ngOnInit(): void {
   }
 

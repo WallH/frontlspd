@@ -72,6 +72,7 @@ export class ValoracionoficialComponent implements OnInit {
 
   eliminarFicha(ficha)
   {
+    if(!confirm('¿Confirma borrado de ficha?')) return;
     this.valoracionesService.delete(ficha._id).then(response=>
     {
       this.cargarValoraciones();

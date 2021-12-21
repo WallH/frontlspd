@@ -40,7 +40,8 @@
                     <td>{{ valoracion.encargado.rango?.nombre || "Sin definir"}}</td>
                     <td>{{ valoracion.puntuacion}}</td>
                     <td>{{ valoracion?.fecha || "Sin definir"}}</td>
-                    <td><button class="btn btn-warning" (click)="verDetalle(valoracion)">Detalle</button></td>
+                    <td><button class="btn btn-warning" (click)="verDetalle(valoracion)">Detalle</button>
+                        <button class="btn btn-danger" (click)="eliminarFicha(valoracion)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>

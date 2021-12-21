@@ -70,5 +70,13 @@ export class ValoracionoficialComponent implements OnInit {
     this.vistaDetalle = JSON.parse(this.valoracionDetalle.puntuacionDetalle);
   }
 
+  eliminarFicha(ficha)
+  {
+    this.valoracionesService.delete(ficha._id).then(response=>
+    {
+      this.cargarValoraciones();
+    }).catch(err=>{
+    });
+  }
 
 }

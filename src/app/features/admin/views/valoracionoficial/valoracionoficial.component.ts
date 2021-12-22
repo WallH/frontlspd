@@ -139,6 +139,7 @@ export class ValoracionoficialComponent implements OnInit {
     }
     let post = [];
     console.log(retValue);
+    if(retValue.length == 0) retValue.push(['Sin datos', 0]);
     this.balanceGeneral = retValue;
 /*    this.data = [];
     for(let )

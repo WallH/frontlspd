@@ -91,7 +91,6 @@ export class ValoracionoficialComponent implements OnInit {
 
   cargarValoraciones()
   {
-    console.log(this.oficialStats);
     this.valoracionesService.getAll().then(response=>{
       this.valoraciones = response.data.response;
       this.valoracionesFiltradas = this.valoraciones;
@@ -125,10 +124,8 @@ export class ValoracionoficialComponent implements OnInit {
         retValue.push(piv);
       }
       let post = [];
-      console.log(retValue);
       if(retValue.length == 0) retValue.push(['Sin datos', 0]);
       this.oficialStats[index].stats = retValue;
-      console.log(this.oficialStats);
     });
     
 
@@ -136,7 +133,6 @@ export class ValoracionoficialComponent implements OnInit {
   topOfficers = new Map<Usuario, any>();
   calcularBalanceGeneral()
   {
-    console.log(this.limitesGeneralFechaDesde);
     let valoracionesNuevas = this.valoraciones.filter(x=> {
       if(this.comisaria != null && this.comisaria._id != x.oficial?.comisaria?._id) return false;
       if(this.limitesGeneralFechaDesde == null && this.limitesGeneralFechaHasta) return true;
@@ -182,7 +178,6 @@ export class ValoracionoficialComponent implements OnInit {
       retValue.push(piv);
     }
     let post = [];
-    console.log(retValue);
     if(retValue.length == 0) retValue.push(['Sin datos', 0]);
     this.balanceGeneral = retValue;
 /*    this.data = [];

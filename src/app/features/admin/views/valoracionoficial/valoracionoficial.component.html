@@ -5,7 +5,7 @@
     <div class="card col-11 col-md-10 col-sm-10">
         <div class="card-header text-light" (click)="generalEstadisticas=!generalEstadisticas" *ngIf="true">Estadísticas generales. (click aquí para mostrar u ocultar)</div>
         <div class="row" *ngIf="generalEstadisticas">
-            <div class="row">
+            <div class="row col-12">
                 <div class="row-3">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Fecha desde</span>
@@ -18,35 +18,57 @@
                         <input [(ngModel)]="limitesGeneralFechaHasta" type="date" class="form-control formulario" onkeydown="return false" (change)="calcularBalanceGeneral()"> 
                     </div>
                 </div>
-                
-            </div>
-            <google-chart class="col-9" #chart  
-            [title]="title"  
-            [type]="type"  
-            [data]="balanceGeneral"  
-            [options]="options"  
-            [height]="height">  
-            </google-chart> 
-            
-            <google-chart class="col-6 mt-1" #chart  
-            [title]="title"  
-            [type]="type"  
-            [data]="balanceGeneral"  
-            [options]="options"  
-            [height]="height">  
-            </google-chart> 
-            
-            <google-chart class="col-6 mt-1" #chart  
-            [title]="title"  
-            [type]="type"  
-            [data]="balanceGeneral"  
-            [options]="options"  
-            [height]="height">  
-            </google-chart> 
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Comisaría</span>
+                    <select type="text" class="form-control text-white" name="selectComisaria" id="selectComisaria"
+                        [(ngModel)]="comisaria" (change)="calcularBalanceGeneral()">
+                        <option *ngFor="let comisariaVar of comisarias" [ngValue]="comisariaVar">{{comisariaVar.nombre}} | Indicativo: {{ comisariaVar.indicativo}}</option>
+                    </select>
+                </div>
 
+            </div>
+            <google-chart class="col-9 w-100" #chart  
+            [title]="title"  
+            [type]="type"  
+            [data]="balanceGeneral"  
+            [options]="options"  
+            [columns]="columnNames"
+            [height]="height">  
+            </google-chart> 
+            <p class="text-light mt-2">Comparar oficiales <button (click)="compararOficiales = !compararOficiales" class="btn" [class]="compararOficiales ? 'btn-warning':'btn-success'">{{(compararOficiales ? '-':'+') }}</button></p>
+            <div *ngIf="compararOficiales" class="row">
+                
+                <div class="input-group col-12">
+                    <span class="input-group-text">Oficial 1</span>
+                    <select type="text" class="form-control text-white" name="selectOficial1" id="selectOficial1" (change)="obtenerInfoPD(0)" [(ngModel)]="oficialStats[0].oficial">
+                        <option *ngFor="let oficial of usuarios" [ngValue]="oficial">{{oficial.nombre}}_{{oficial.apellido}} | Rango: {{oficial.rango?.nombre}} | Poder: {{ oficial.rango?.poder}}</option>
+                    </select>
+                    <span class="input-group-text">Oficial 2</span>
+                    <select type="text" class="form-control text-white" name="selectOficial2" id="selectOficial2" (change)="obtenerInfoPD(1)" [(ngModel)]="oficialStats[1].oficial">
+                        <option *ngFor="let oficial of usuarios" [ngValue]="oficial">{{oficial.nombre}}_{{oficial.apellido}} | Rango: {{oficial.rango?.nombre}} | Poder: {{ oficial.rango?.poder}}</option>
+                    </select>
+
+                </div>     
+                <google-chart class="col-6 w-50" #chart  
+                [title]="title"  
+                [type]="type"  
+                [data]="oficialStats[0]['stats']"  
+                [options]="options"  
+                [columns]="columnNames"
+                [height]="height">  
+                </google-chart> 
+                <google-chart class="col-6 w-50" #chart  
+                [title]="title"  
+                [type]="type"  
+                [data]="oficialStats[1]['stats']"  
+                [options]="options"  
+                [columns]="columnNames"
+                [height]="height">  
+                </google-chart> 
+            </div>
         </div>
 
-        <div class="card-header text-light" (click)="filtradosEstadisticas=!filtradosEstadisticas" *ngIf="true">Estadísticas de los datos listados. (click aquí para mostrar u ocultar)</div>
+        <div class="card-header text-light" (click)="filtradosEstadisticas=!filtradosEstadisticas" *ngIf="false">Estadísticas de los datos listados. (click aquí para mostrar u ocultar)</div>
         <div *ngIf="filtradosEstadisticas && false">
             <google-chart #chart  
             [title]="title"  

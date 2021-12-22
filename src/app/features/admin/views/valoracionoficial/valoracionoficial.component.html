@@ -3,9 +3,51 @@
         <app-navbar></app-navbar>
     </div>
     <div class="card col-11 col-md-10 col-sm-10">
-        <div class="card-header text-light" (click)="generalEstadisticas=!generalEstadisticas" *ngIf="false">Estadísticas de los datos listados. (click aquí para mostrar u ocultar)</div>
+        <div class="card-header text-light" (click)="generalEstadisticas=!generalEstadisticas" *ngIf="true">Estadísticas generales. (click aquí para mostrar u ocultar)</div>
+        <div class="row" *ngIf="generalEstadisticas">
+            <div class="row">
+                <div class="row-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha desde</span>
+                        <input [(ngModel)]="limitesGeneralFechaDesde" type="date" class="form-control formulario" onkeydown="return false" (change)="calcularBalanceGeneral()"> 
+                    </div>
+                </div>
+                <div class="row-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha hasta</span>
+                        <input [(ngModel)]="limitesGeneralFechaHasta" type="date" class="form-control formulario" onkeydown="return false" (change)="calcularBalanceGeneral()"> 
+                    </div>
+                </div>
+                
+            </div>
+            <google-chart class="col-9" #chart  
+            [title]="title"  
+            [type]="type"  
+            [data]="balanceGeneral"  
+            [options]="options"  
+            [height]="height">  
+            </google-chart> 
+            
+            <google-chart class="col-6 mt-1" #chart  
+            [title]="title"  
+            [type]="type"  
+            [data]="balanceGeneral"  
+            [options]="options"  
+            [height]="height">  
+            </google-chart> 
+            
+            <google-chart class="col-6 mt-1" #chart  
+            [title]="title"  
+            [type]="type"  
+            [data]="balanceGeneral"  
+            [options]="options"  
+            [height]="height">  
+            </google-chart> 
 
-        <div *ngIf="generalEstadisticas && false">
+        </div>
+
+        <div class="card-header text-light" (click)="filtradosEstadisticas=!filtradosEstadisticas" *ngIf="true">Estadísticas de los datos listados. (click aquí para mostrar u ocultar)</div>
+        <div *ngIf="filtradosEstadisticas && false">
             <google-chart #chart  
             [title]="title"  
             [type]="type"  

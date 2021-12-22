@@ -20,4 +20,11 @@ protected urlFinal: string;
     });
   }
 
+  async changeMyPassword(passwordbody)
+  {
+    return await axios.put(this.urlFinal+ "password", passwordbody, {
+      withCredentials: true
+    });
+  }
+
 }

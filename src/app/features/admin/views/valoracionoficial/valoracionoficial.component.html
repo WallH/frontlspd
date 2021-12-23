@@ -22,6 +22,7 @@
                     <span class="input-group-text">Comisaría</span>
                     <select type="text" class="form-control text-white" name="selectComisaria" id="selectComisaria"
                         [(ngModel)]="comisaria" (change)="calcularBalanceGeneral()">
+                        <option [ngValue]="null">Todas las comisarías</option>
                         <option *ngFor="let comisariaVar of comisarias" [ngValue]="comisariaVar">{{comisariaVar.nombre}} | Indicativo: {{ comisariaVar.indicativo}}</option>
                     </select>
                 </div>

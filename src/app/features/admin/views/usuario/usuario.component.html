@@ -87,7 +87,8 @@
                             <td> {{ oficial.comisaria?.nombre || "Sin definir" }}</td>
                             <td>{{((oficial?.activo) ? "Si" : "No")}}</td>
                             <td><button class="btn btn-warning" (click)="editarUsuario(oficial)">Editar</button>
-                            <button class="btn" [class]="oficial?.activo ? 'btn-danger' : 'btn-success'" (click)="cambiarEstadoUsuario(oficial)">{{((oficial?.activo) ? "Deshabilitar" : "Habilitar")}}</button></td>
+                            <button class="btn" [class]="oficial?.activo ? 'btn-danger' : 'btn-success'" (click)="cambiarEstadoUsuario(oficial)">{{((oficial?.activo) ? "Deshabilitar" : "Habilitar")}}</button>
+                            <button class="btn btn-danger d-none" (click)="eliminarUsuario(oficial)">Borrar</button></td>
                         </tr>    
                     </tbody>
                 </table>

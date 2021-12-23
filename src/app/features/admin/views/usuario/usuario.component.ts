@@ -172,6 +172,14 @@ export class UsuarioComponent implements OnInit {
       this.comisarias = response.data.response;
     });
   }
+
+  eliminarUsuario(usuario)
+  {
+    this.usuarioService.delete(usuario._id).then(response=>{
+      this.cargarUsuarios();
+    });
+  }
+  
   ngOnInit(): void {
   }
 

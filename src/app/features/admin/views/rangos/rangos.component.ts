@@ -82,7 +82,6 @@ export class RangosComponent implements OnInit {
     this.rangoService.getAll().then(response=>{
       this.rangos = response.data.response;
       this.rangosFiltrados = this.rangos;
-      console.log(this.rangos);
     })
   }
 

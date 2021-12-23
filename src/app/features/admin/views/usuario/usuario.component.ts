@@ -86,7 +86,6 @@ export class UsuarioComponent implements OnInit {
   editarUsuario(usuario)
   {
     this.usuarioEdicion = usuario;
-    console.log(this.usuarioEdicion);
     this.assignDataToFormGroup(this.usuarioFormEdit, this.usuarioEdicion);
     this.usuarioEdicion.rango = this.rangos.filter(x=> x._id == usuario.rango?._id)[0];
     this.usuarioEdicion.comisaria = this.comisarias.filter(x=> x._id == usuario.comisaria?._id)[0];
@@ -103,7 +102,6 @@ export class UsuarioComponent implements OnInit {
   crearUsuario()
   {
     this.assignFormDataToElement(this.usuarioForm);
-    console.log(this.usuario.rango);
     this.usuarioService.add(this.usuario).then(res=>
       {
         alert("Usuario creado");
@@ -153,7 +151,6 @@ export class UsuarioComponent implements OnInit {
       if(oficial["activo"] == undefined) oficial["activo"] = true;
       else oficial.activo = !oficial?.activo; 
       this.usuarioService.edit(oficial._id, oficial).then(response=>{
-        console.log(response);
       });
     }
   }
@@ -162,7 +159,6 @@ export class UsuarioComponent implements OnInit {
     this.rangos = new Array<Rango>();
     this.rangoService.getAll().then(response=>{
       this.rangos = response.data.response;
-      console.log(this.rangos);
     })
   }
 
@@ -179,7 +175,7 @@ export class UsuarioComponent implements OnInit {
       this.cargarUsuarios();
     });
   }
-  
+
   ngOnInit(): void {
   }
 

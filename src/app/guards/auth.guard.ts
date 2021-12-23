@@ -32,7 +32,6 @@ export class NeedLogout implements CanActivate
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
         let isLogged = (await this.authDataService.checkLogin()).data.response;
         this.authDataService.validLogin.next(isLogged);
-        console.log("ASDADA");
         if(isLogged)
         {
             this.router.navigateByUrl('supervisor/valoracionoficial');

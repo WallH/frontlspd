@@ -157,7 +157,6 @@ export class ValoracionoficialComponent implements OnInit {
     this.puntuacionNueva.filter(x=>{
       if(x.checked) this.valoracion.puntuacion= new Number(parseInt(x.puntaje.toString())+parseInt(this.valoracion.puntuacion.toString()));;
     })
-    console.log(this.valoracion.puntuacion);
     this.valoracionesService.add(this.valoracion).then(response=>{
       alert("Ficha creada correctamente.");
       this.cargarValoraciones();

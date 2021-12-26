@@ -161,6 +161,11 @@ export class RangosComponent implements OnInit {
   agregarPermiso()
   {
     const found = this.permisosEdicion.acciones.filter(x=> x._id == this.accionNueva._id).length > 0;
+    if(this.accionNueva?._id == null || this.accionNueva?._id?.trim() == '') 
+    {
+      alert("No elegiste un permiso que agregar.");
+      return;
+    } 
     if(found)
     {
       alert("No se puede agregar este permiso porque este rango ya lo tiene.");

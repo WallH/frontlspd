@@ -25,7 +25,7 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">Fecha</span>
-                <input [(ngModel)]="valoracion.fecha" type="date" class="form-control formulario" onkeydown="return false"> 
+                <input [(ngModel)]="valoracion.fecha" type="date" class="form-control formulario" onkeydown="return false" [max]="maxDate | date: 'yyyy-MM-dd'"> 
             </div>
             <button class="btn btn-success" (click)="crearFicha()">Enviar ficha</button>
         </div>

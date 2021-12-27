@@ -12,7 +12,7 @@ import DynamicFilters from 'src/app/utils/dynamicfilters';
   styleUrls: ['./valoracionoficial.component.css']
 })
 export class ValoracionoficialComponent implements OnInit {
-
+  maxDate = new Date();
   puntuacionNueva = [
     {
       label:"Conducción",

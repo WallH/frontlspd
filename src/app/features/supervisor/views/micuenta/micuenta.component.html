@@ -8,11 +8,11 @@
             <div class="card-body">
                 <form class="formulario" (submit)="cambiarPassword()" [formGroup]="claveForm">
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Contraseña</span>
+                        <span class="input-group-text">Nueva contraseña</span>
                         <input formControlName="clave" type="password" class="form-control text-white">
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Confirmar cambio</span>
+                        <span class="input-group-text">Repetir contraseña</span>
                         <input type="password" formControlName="claveConfirmacion" class="form-control text-white">
                     </div>
                     <button class="btn btn-success w-100" type="submit" [disabled]="claveForm.invalid">Confirmar cambio</button>

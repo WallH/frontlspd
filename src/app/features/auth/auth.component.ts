@@ -34,6 +34,7 @@ export class AuthComponent implements OnInit {
       //localStorage.setItem('rol', res.data.rol)
       localStorage.setItem('nombre', res.data.nombre);
       localStorage.setItem('apellido', res.data.apellido);
+      //localStorate.setItem('rango', res.data.rango);
       this.route.navigateByUrl('supervisor/valoracionoficial');
     }).catch((res)=>
     {

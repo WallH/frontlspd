@@ -123,6 +123,7 @@ export class ValoracionoficialComponent implements OnInit {
   constructor(private valoracionesService:ValoracionOficialService, private usuarioService:UsuarioService, private myService:MyService) {
     this.cargarValoraciones();
     this.cargarUsuarios();
+    this.valoracion.fecha = new Date();
    }
 
   ngOnInit(): void {

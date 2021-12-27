@@ -27,6 +27,13 @@
                         <option *ngFor="let rank of rangos" [ngValue]="rank">{{rank.nombre}} | Poder: {{ rank.poder}}</option>
                     </select>
                 </div>
+                <div class="input-group mb-3" *ngIf="isPTB">
+                    <span class="input-group-text">Miembro PTB</span>
+                    <select type="text" class="form-control text-white" name="selectPTB" id="selectPTB" [(ngModel)]="usuario.ptb">
+                        <option [ngValue]="false">NO</option>
+                        <option [ngValue]="true">SI</option>
+                    </select>
+                </div>
                 <form class="formulario" (submit)="crearUsuario()" [formGroup]="usuarioForm">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Usuario</span>
@@ -108,6 +115,13 @@
                         <select type="text" class="form-control text-white" name="editRango" id="editRango"
                             [(ngModel)]="usuarioEdicion.rango">
                             <option *ngFor="let rank of rangos" [ngValue]="rank">{{rank.nombre}} | Poder: {{ rank.poder}}</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3" *ngIf="isPTB">
+                        <span class="input-group-text">Miembro PTB</span>
+                        <select type="text" class="form-control text-white" name="editPTB" id="editPTB" [(ngModel)]="usuarioEdicion.ptb">
+                            <option [ngValue]="false">NO</option>
+                            <option [ngValue]="true">SI</option>
                         </select>
                     </div>
                     <form class="formulario" (submit)="confirmarEdicion()" [formGroup]="usuarioFormEdit">

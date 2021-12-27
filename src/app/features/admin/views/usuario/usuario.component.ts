@@ -15,6 +15,7 @@ import DynamicFilters from 'src/app/utils/dynamicfilters';
 })
 export class UsuarioComponent implements OnInit {
 
+  isPTB = false;
   usuarios:Array<Usuario> = new Array<Usuario>();
   usuario:Usuario = new Usuario();
   usuarioEdicion:Usuario = null;
@@ -71,6 +72,7 @@ export class UsuarioComponent implements OnInit {
     this.cargarUsuarios();
     this.cargarRangos();
     this.cargarComisarias();
+    this.isPTB = localStorage.getItem('ptb') == 'true';
    }
 
   cargarUsuarios()
@@ -96,7 +98,8 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.edit(this.usuarioEdicion._id, this.usuarioEdicion).then(res=>
       {
         this.cargarUsuarios();
-
+        alert("Edición finalizada");
+        this.usuarioEdicion = null;
       })
   }
   crearUsuario()

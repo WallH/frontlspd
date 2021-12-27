@@ -3,7 +3,7 @@ import { Rango } from "./rango";
 
 export class Usuario
 {
-    constructor(public nombre_usuario?:string, public clave?:string, public nombre?:string, public apellido?:string, public rango?:Rango, public activo?:Boolean, public comisaria?:Comisaria,public _id?:string)
+    constructor(public nombre_usuario?:string, public clave?:string, public nombre?:string, public apellido?:string, public rango?:Rango, public activo?:Boolean, public comisaria?:Comisaria, public ptb?:Boolean,public _id?:string)
     {
         this.nombre_usuario = nombre_usuario;
         this.clave = clave;
@@ -12,6 +12,7 @@ export class Usuario
         this.rango = rango;
         this.activo = activo;
         this.comisaria = comisaria;
+        this.ptb = ptb;
         this._id = _id;
     }
 }

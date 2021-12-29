@@ -12,7 +12,7 @@ import { ValoracionoficialComponent } from './views/valoracionoficial/valoracion
 const routes: Routes = [{ path: '', component: AdminComponent },
   {path:'usuarios', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["usuario.nuevo", "usuario.eliminar", "usuario.obtener", "usuario.editar"]},component:UsuarioComponent},
   {path:'rangos', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:RangosComponent},
-  {path:'valoracionoficial', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["ficha.nuevo", "ficha.eliminar", "ficha.obtener", "ficha.editar"]}, component:ValoracionoficialComponent},
+  {path:'valoracionoficial', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["ficha.nuevo", "ficha.obtener"]}, component:ValoracionoficialComponent},
   {path:'permisosendpoint', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:PermisosendpointComponent},
   {path:'comisaria', canActivate:[NeedLoggedIn,HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:ComisariaComponent}
 ];

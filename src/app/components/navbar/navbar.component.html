@@ -14,6 +14,12 @@
       </a>
     </li>
     <li>
+      <a [routerLink]="['/admin/valoracionoficial']"  *ngIf="isPTB" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Valoración Oficiales">
+        <i class="bi bi-book-half"></i>
+        Admin fichas PTB
+      </a>
+    </li>
+    <li>
       <a [routerLink]="['/admin/rangos']" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Valoración Oficiales">
         <i class="bi bi-shield"></i>
         Admin rangos
@@ -23,6 +29,12 @@
       <a [routerLink]="['/supervisor/valoracionoficial']" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Valoración Oficiales">
         <i class="bi bi-book"></i>
         Crear/Ver fichas
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/supervisor/fichaptb']" *ngIf="isPTB" routerLinkActive="bg-info" class="nav-link text-light py-3 border-bottom" title="Administración Valoración Oficiales">
+        <i class="bi bi-book"></i>
+        Crear/Ver fichas PTB
       </a>
     </li>
     <li>

@@ -20,6 +20,14 @@ protected urlFinal: string;
     });
   }
 
+
+  async getMyFichaPTB()
+  {
+    return await axios.get(this.urlFinal + "fichaptb",{
+      withCredentials: true
+    });
+  }
+
   async changeMyPassword(passwordbody)
   {
     return await axios.put(this.urlFinal+ "password", passwordbody, {

@@ -8,8 +8,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(private authService:AuthService, private router:Router) { }
+  isPTB:boolean = false;
+  constructor(private authService:AuthService, private router:Router) { 
+    this.isPTB = localStorage.getItem('ptb') == 'true';
+  }
 
   ngOnInit(): void {
   }

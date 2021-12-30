@@ -7,9 +7,10 @@ import { ValoracionoficialComponent } from './views/valoracionoficial/valoracion
 import { CorecomponentsModule } from 'src/app/components/corecomponents/corecomponents.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MicuentaComponent } from './views/micuenta/micuenta.component';
+import { FichaptbComponent } from './views/fichaptb/fichaptb.component';
 
 @NgModule({
-  declarations: [SupervisorComponent, ValoracionoficialComponent, MicuentaComponent],
+  declarations: [SupervisorComponent, ValoracionoficialComponent, MicuentaComponent, FichaptbComponent],
   imports: [
     CommonModule,
     SupervisorRoutingModule,

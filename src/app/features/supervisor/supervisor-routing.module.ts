@@ -9,7 +9,7 @@ import { ValoracionoficialComponent } from './views/valoracionoficial/valoracion
 
 const routes: Routes = [{ path: '', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["ficha.nuevo"]}, component:ValoracionoficialComponent},
   {path:'valoracionoficial', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["ficha.nuevo"]}, component:ValoracionoficialComponent},
-  {path:'fichaptb', canActivate:[NeedLoggedIn, HavePermission], data:{permisosNested:["fichaptb.nuevo"]}, component:FichaptbComponent},
+  {path:'fichaptb', canActivate:[NeedLoggedIn, HavePermission], data:{permisosNested:[]}, component:FichaptbComponent},
   {path:'micuenta', canActivate:[NeedLoggedIn], component:MicuentaComponent}];
 
 @NgModule({

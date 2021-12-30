@@ -92,8 +92,6 @@ export class FichaptbComponent implements OnInit {
   
   crearFicha()
   {
-    this.valoracion.puntuacion = 0;
-
     this.fichasPTBService.add(this.valoracion).then(response=>{
       alert("Ficha creada correctamente.");
       this.cargarValoraciones();

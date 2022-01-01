@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-1 col-md-2 col-sm-2">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="card col-11 col-md-10 col-sm-10 mt-0">
+        <div class="card-header text-light" (click)="generalEstadisticas=!generalEstadisticas" *ngIf="true">Mis estadísticas</div>
+        <p class="text-light">Las estadísticas presentadas a continuación están basadas en las fichas que les hayan realizado los diversos oficiales del departamento.</p>
+        <div class="row">
+            <div class="row col-12">
+                <div class="row-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha desde</span>
+                        <input [(ngModel)]="limitesGeneralFechaDesde" type="date" class="form-control formulario" onkeydown="return false" (change)="obtenerInfoPD()"> 
+                    </div>
+                </div>
+                <div class="row-3">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Fecha hasta</span>
+                        <input [(ngModel)]="limitesGeneralFechaHasta" type="date" class="form-control formulario" onkeydown="return false" (change)="obtenerInfoPD()"> 
+                    </div>
+                </div>
+            </div>
+            <google-chart class="col-9 w-100" #chart  
+            [title]="title"  
+            [type]="type"  
+            [data]="balanceGeneral"  
+            [options]="options"  
+            [columns]="columnNames"
+            [height]="height">  
+            </google-chart> 
+        </div>
+    </div>
+</div>

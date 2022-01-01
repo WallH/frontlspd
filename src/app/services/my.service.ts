@@ -20,6 +20,12 @@ protected urlFinal: string;
     });
   }
 
+  async getMyStats()
+  {
+    return await axios.get(this.urlFinal + "stats",{
+      withCredentials: true
+    });
+  }
 
   async getMyFichaPTB()
   {

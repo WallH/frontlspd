@@ -8,15 +8,19 @@ import { CorecomponentsModule } from 'src/app/components/corecomponents/corecomp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MicuentaComponent } from './views/micuenta/micuenta.component';
 import { FichaptbComponent } from './views/fichaptb/fichaptb.component';
+import { MystatsComponent } from './views/mystats/mystats.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
-  declarations: [SupervisorComponent, ValoracionoficialComponent, MicuentaComponent, FichaptbComponent],
+  declarations: [SupervisorComponent, ValoracionoficialComponent, MicuentaComponent, FichaptbComponent, MystatsComponent],
   imports: [
     CommonModule,
     SupervisorRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     CorecomponentsModule,
+    GoogleChartsModule  
+
   ]
 })
 export class SupervisorModule { }

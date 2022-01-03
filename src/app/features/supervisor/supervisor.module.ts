@@ -10,9 +10,10 @@ import { MicuentaComponent } from './views/micuenta/micuenta.component';
 import { FichaptbComponent } from './views/fichaptb/fichaptb.component';
 import { MystatsComponent } from './views/mystats/mystats.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { SancionarComponent } from './views/sancionar/sancionar.component';
 
 @NgModule({
-  declarations: [SupervisorComponent, ValoracionoficialComponent, MicuentaComponent, FichaptbComponent, MystatsComponent],
+  declarations: [SupervisorComponent, ValoracionoficialComponent, MicuentaComponent, FichaptbComponent, MystatsComponent, SancionarComponent],
   imports: [
     CommonModule,
     SupervisorRoutingModule,

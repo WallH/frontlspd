@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-1 col-md-2 col-sm-2">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="col-11 col-md-10 col-sm-10">
+        <div class="card">
+            <div class="card-header text-light ">Administración de grados de sanción</div>
+            <div class="card-body">
+                <p class="text-light">En esta sección podrás administrar los grados de sanción disponibles.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-light">Creación de grado</div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">En caso de acumulación</span>
+                <select type="text" class="form-control text-white" name="selectGrado" id="selectGrado"
+                    [(ngModel)]="gradoSancion.acumulacion">
+                    <option [ngValue]="null">Sin acumulación</option>
+                    <option *ngFor="let gradoSanc of gradoSancions" [ngValue]="gradoSanc">{{gradoSanc.nombre}} | Duración: {{gradoSanc.dias}} días.</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Se necesitan para acumulación</span>
+                <input type="number" class="form-control text-white" [(ngModel)]="gradoSancion.acumulacionCantidad" id="gradoAcum" name="gradoAcum">
+            </div>
+            <form class="formulario" (submit)="creargradoSancion()" [formGroup]="gradoSancionForm">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Nomenclatura</span>
+                    <input type="text" formControlName="nombre" type="text" class="form-control text-white">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Duración en días</span>
+                    <input formControlName="dias" type="number" class="form-control text-white">
+                </div>
+                <button class="btn btn-success w-100" type="submit" [disabled]="gradoSancionForm.invalid">Crear grado</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="card col-6 col-sm-12 col-lg-6">
+                <div class="card-header text-light"><h2>Listado de grados</h2></div>
+                <div class="mb-2 text-light">
+                    Filtros: <button class="btn btn-sm btn-success" (click)="nuevoFiltro()">+</button>
+                    <div class="float-end">
+                        <button class="btn btn-sm btn-secondary" (click)="buscar()">Buscar</button>
+                        <button class="btn btn-sm btn-primary" (click)="limpiarFiltro()">Limpiar filtro</button>
+                    </div>
+                </div>
+                <div *ngFor="let filtro of filtros" class="row input-group m-auto mb-1">
+                    <select class="form-select-sm col-3 text-white filtros s" [(ngModel)]="filtro.property">
+                        <option *ngFor="let prop of propiedades">{{prop}}</option>
+                    </select>
+                    <input class="form-control col-8" [(ngModel)]="filtro.value">
+                    <button class="btn btn-danger col-1" (click)="borrarFiltro(filtro)">-</button>
+                </div>
+
+                <table class="table tabla text-light">
+                    <thead>
+                        <tr>
+                            <th>Nomenclatura</th>
+                            <th>Duración</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let gradoSancion of gradoSancionesFiltradas">
+                            <td>{{ gradoSancion.nombre }} </td>
+                            <td>{{ gradoSancion.dias }} días</td>
+                            <td><button class="btn btn-warning" (click)="editargradoSancion(gradoSancion)">Editar</button>
+                        </tr>    
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="card col-6 col-sm-12 col-lg-6" *ngIf="gradoSancionEdicion != null">
+                <div class="card-header text-light"><h2>Edición del grado de sanción</h2></div>
+                <div class="card-body">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">En caso de acumulación</span>
+                        <select type="text" class="form-control text-white" name="edtGrado" id="edtGrado"
+                            [(ngModel)]="gradoSancionEdicion.acumulacion">
+                            <option [ngValue]="null">Sin acumulación</option>
+                            <option *ngFor="let gradoSanc of gradoSancions" [ngValue]="gradoSanc">{{gradoSanc.nombre}} | Duración: {{gradoSanc.dias}} días.</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Se necesitan para acumulación</span>
+                        <input type="number" class="form-control text-white" [(ngModel)]="gradoSancionEdicion.acumulacionCantidad" id="edtgradoAcum" name="edtgradoAcum">
+                    </div>
+                    <form class="formulario" (submit)="confirmarEdicion()" [formGroup]="gradoSancionFormEdit">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" formControlName="nombre" type="text" class="form-control text-white">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Duración en días</span>
+                            <input formControlName="dias" type="number" class="form-control text-white">
+                        </div>
+                        <button class="btn btn-success w-100" type="submit" [disabled]="gradoSancionFormEdit.invalid">Confirmar edición.</button>
+                    </form>            
+                </div>
+            </div>
+
+
+        </div>
+    
+    </div>
+</div>

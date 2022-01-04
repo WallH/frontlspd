@@ -12,6 +12,13 @@
                     <option *ngFor="let oficial of usuarios" [ngValue]="oficial">{{oficial.nombre}}_{{oficial.apellido}} | Rango: {{oficial.rango?.nombre}} | Poder: {{ oficial.rango?.poder}}</option>
                 </select>
             </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Grado sanción</span>
+                <select type="text" class="form-control text-white" name="selectGrado" id="selectGrado"
+                    [(ngModel)]="sancion.grado">
+                    <option *ngFor="let gradoSanc of gradosSanciones" [ngValue]="gradoSanc">{{gradoSanc.nombre}} | Duración: {{gradoSanc.dias}} días.</option>
+                </select>
+            </div>
             <hr class="bg-light">
             <div class="input-group mb-3">
                 <span class="input-group-text">Sanción con degrado</span>
@@ -30,7 +37,7 @@
                 <span class="input-group-text">Fecha</span>
                 <input [(ngModel)]="sancion.fecha" type="date" class="form-control formulario" onkeydown="return false" [max]="maxDate | date: 'yyyy-MM-dd'"> 
             </div>
-            <button class="btn btn-success" (click)="crearSancion()">Enviar ficha</button>
+            <button class="btn btn-success" (click)="crearSancion()">Enviar sanción.</button>
         </div>
         <div class="card">
             <div class="card-header text-light">
@@ -56,20 +63,23 @@
                         <th>Oficial sancionado</th>
                         <th>Rango en sanción</th>
                         <th>Rango actual</th>
+                        <th>Degrado</th>
                         <th>Grado</th>
                         <th>Fecha</th>
+                        <th>Fecha fin</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let sanc of sancionesFiltradas">
                         <td>{{ sanc.oficial.nombre }}_{{sanc.oficial.apellido}}</td>
-                        <td>{{ sanc.rangodurante }}</td>
+                        <td>{{ sanc?.rangodurante }}</td>
                         <td>{{ sanc.oficial.rango?.nombre || "Sin definir"}}</td>
                         <td>{{ ((sanc.degrado) ? "SI" : "NO")}}</td>
                         <td>{{ sanc.grado?.nombre || "Grado inválido" }}</td>
                         <td>{{ sanc?.fecha || "Sin definir"}}</td>
-                        <td><button class="btn btn-warning" (click)="verDetalle(sancion)">Detalle</button></td>
+                        <td>{{ sanc?.fechaFin || "Sin definir"}}</td>
+                        <td><button class="btn btn-warning" (click)="verDetalle(sanc)">Detalle</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -77,8 +87,8 @@
             <span class="border rounded border-warning detalleficha" *ngIf="sancionDetalle != null">
                 <p class="text-light">Oficial sancionado: {{ sancionDetalle.oficial?.nombre }}_{{sancionDetalle.oficial?.apellido}} </p>
                 <p class="text-light">Supervisor: {{ sancionDetalle.supervisor?.nombre }}_{{sancionDetalle.supervisor?.apellido}} </p>
-                <p>Grado sanción: {{ sancionDetalle.grado?.nombre || "Sin definir"}}</p>
-                <p class="text-light">Con degrado: {{ ((sanc.degrado) ? "SI" : "NO")  }} </p>
+                <p class="text-light">Grado sanción: {{ sancionDetalle.grado?.nombre || "Sin definir"}}</p>
+                <p class="text-light">Con degrado: {{ ((sancionDetalle.degrado) ? "SI" : "NO")  }} </p>
                 <p class="text-light">Detalle: {{sancionDetalle.observacion}}</p>
                 <p class="text-light">Fecha: {{sancionDetalle.fecha}}</p>
                 <p></p>

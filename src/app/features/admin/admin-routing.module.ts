@@ -5,6 +5,7 @@ import { HavePermission, NeedLoggedIn } from 'src/app/guards/auth.guard';
 import { AdminComponent } from './admin.component';
 import { ComisariaComponent } from './views/comisaria/comisaria.component';
 import { FichasptbComponent } from './views/fichasptb/fichasptb.component';
+import { GradosancionComponent } from './views/gradosancion/gradosancion.component';
 import { PermisosendpointComponent } from './views/permisosendpoint/permisosendpoint.component';
 import { RangosComponent } from './views/rangos/rangos.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
@@ -16,6 +17,7 @@ const routes: Routes = [{ path: '', component: AdminComponent },
   {path:'valoracionoficial', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["ficha.nuevo", "ficha.obtener"]}, component:ValoracionoficialComponent},
   {path:'permisosendpoint', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:PermisosendpointComponent},
   {path:'comisaria', canActivate:[NeedLoggedIn,HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:ComisariaComponent},
+  {path:'gradossanciones', canActivate:[NeedLoggedIn,HavePermission], data:{ permisosNested:["rango.nuevo", "rango.eliminar", "rango.obtener", "rango.editar"]}, component:GradosancionComponent},
   {path:'fichasptb', canActivate:[NeedLoggedIn, HavePermission], data:{ permisosNested:["fichaptb.nuevo", "fichaptb.obtener"]}, component:FichasptbComponent}
 ];
 

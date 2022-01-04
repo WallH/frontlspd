@@ -12,10 +12,11 @@ import { RangosComponent } from './views/rangos/rangos.component';
 import { PermisosendpointComponent } from './views/permisosendpoint/permisosendpoint.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ComisariaComponent } from './views/comisaria/comisaria.component';
-import { FichasptbComponent } from './views/fichasptb/fichasptb.component'; 
+import { FichasptbComponent } from './views/fichasptb/fichasptb.component';
+import { GradosancionComponent } from './views/gradosancion/gradosancion.component'; 
 
 @NgModule({
-  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent, PermisosendpointComponent, ComisariaComponent, FichasptbComponent],
+  declarations: [AdminComponent, UsuarioComponent, ValoracionoficialComponent, RangosComponent, PermisosendpointComponent, ComisariaComponent, FichasptbComponent, GradosancionComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -77,8 +77,8 @@
                         <td>{{ sanc.oficial.rango?.nombre || "Sin definir"}}</td>
                         <td>{{ ((sanc.degrado) ? "SI" : "NO")}}</td>
                         <td>{{ sanc.grado?.nombre || "Grado inválido" }}</td>
-                        <td>{{ sanc?.fecha || "Sin definir"}}</td>
-                        <td>{{ sanc?.fechaFin || "Sin definir"}}</td>
+                        <td>{{ sanc?.fecha  | date: 'mediumDate' || "Sin definir"}}</td>
+                        <td>{{ sanc?.fechaFin  | date: 'mediumDate' || "Sin definir"}}</td>
                         <td><button class="btn btn-warning" (click)="verDetalle(sanc)">Detalle</button></td>
                     </tr>
                 </tbody>
@@ -90,7 +90,8 @@
                 <p class="text-light">Grado sanción: {{ sancionDetalle.grado?.nombre || "Sin definir"}}</p>
                 <p class="text-light">Con degrado: {{ ((sancionDetalle.degrado) ? "SI" : "NO")  }} </p>
                 <p class="text-light">Detalle: {{sancionDetalle.observacion}}</p>
-                <p class="text-light">Fecha: {{sancionDetalle.fecha}}</p>
+                <p class="text-light">Fecha: {{sancionDetalle.fecha | date: 'mediumDate'}}</p>
+                <p class="text-light">Fecha fin: {{sancionDetalle.fechaFin | date: 'mediumDate'}}</p>
                 <p></p>
             </span>
         </div>   
